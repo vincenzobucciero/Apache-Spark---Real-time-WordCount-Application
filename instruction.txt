@@ -1,0 +1,82 @@
+// ON NFS SERVER
+// connection with the server
+ssh -p 22 sshuser@provaexam-ssh.azurehdinsight.net
+
+// install and start the NFS service
+sudo apt update
+sudo apt install nfs-kernel-server
+sudo systemctl restart nfs-kernel-server
+
+// create a directory
+mkdir -p spark_streaming_app
+
+// exports the directory via NFS
+sudo nano /etc/exports
+
+// inside file add the following line
+/home/sshuser/spark_streaming_app <ip_address>(rw,sync,no_subtree_check)
+
+// refresh NFS exports
+sudo exportfs -ra
+
+
+
+
+
+
+// ON NFS CLIENT
+// connection with the client
+ssh -p 23 sshuser@provaexam-ssh.azurehdinsight.net
+
+// install and start the NFS service
+sudo apt update
+sudo apt install nfs-kernel-server
+sudo systemctl restart nfs-kernel-server
+
+// create a directory
+mkdir -p spark_streaming_app
+
+// mount the shared directory from the server
+sudo mount <server-ip_address>:/home/sshuser/spark_streaming_app /home/sshuser/spark_streaming_app
+
+
+
+
+
+
+// ON LOCAL TERMINAL
+cd Desktop/iotExamPartII
+scp -P 22 socketExam.py structuredStreamingWordcount.py *.txt sshuser@provaexam-ssh.azurehdinsight.net:~/spark_streaming_app
+
+
+
+
+// ON NFS SERVER
+spark-submit --deploy-mode client socketExam.py --host hn0-provae --port 8080 --file *.txt
+
+
+
+// ON NFS CLIENT
+spark-submit --deploy-mode client structuredStreamingWordcount.py hn0-provae 8080
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
