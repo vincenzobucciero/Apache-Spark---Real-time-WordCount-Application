@@ -1,11 +1,11 @@
-# Apache-Spark Real-time-WordCount-Application with PySpark
-A distributed streaming system using Spark Structured Streaming for real-time word counting and text analytics. Features a TCP socket simulator mimicking Kafka, windowed aggregations, stop word filtering, and YARN cluster deployment with NFS storage.
+
+
 
 # Apache Spark - Real Time WordCount Application with PySPark
 
 Apache Spark Real-time WordCount Application with PySpark
 
-A distributed real-time word counting application built with Apache Spark Structured Streaming and PySpark. This project demonstrates streaming data processing using a TCP socket data source and provides comprehensive text analytics with windowed aggregations.
+A distributed streaming system using Spark Structured Streaming for real-time word counting and text analytics. Features a TCP socket simulator mimicking Kafka, windowed aggregations, stop word filtering, and YARN cluster deployment with NFS storage.
 
 # 🚀 Features
 
@@ -33,10 +33,6 @@ A distributed real-time word counting application built with Apache Spark Struct
 
 # 🏗️ Architecture
 The application implements a distributed real-time streaming architecture designed for processing text data at scale. The system consists of two main components running on separate nodes within a YARN cluster environment.
-
-# 📁 Project Structure
-
-
 
 # 🔧 Components
 1. **Socket Simulator** (socketExam.py)
